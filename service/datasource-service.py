@@ -22,7 +22,7 @@ def to_transit_datetime(dt_int):
 
 class DataAccess:
     def __init__(self):
-        self._entities = {"events": [], "orders": [], "organizers": [], "bookmarks": [], "assortment": [], "owned_event_attendees": [], "owned_event_orders": []}
+        self._entities = {"events": [], "orders": [], "organizers": [], "bookmarks": [], "assortment": [], "owned_event_attendees": [], "owned_event_orders": [] "owned_events": []}
 
     def get_entities(self, since, datatype, eventbrite):
         if not datatype in self._entities:
@@ -42,7 +42,7 @@ class DataAccess:
 
         data = {}
         if since:
-            data['changed_since'] = iso8601.parse_date(since)
+            data['changed_since'] = since
         result = eventbrite.get("/users/me/" + datatype +"/", data=data)
 
         datatype = datatype.split("_")[-1]
